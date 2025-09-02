@@ -17,12 +17,10 @@ app.get("/api/dictionary", async (req, res) => {
     if (!term) {
       return res.status(400).json({ error: "Term parameter is required" });
     }
-
     const response = await axios.get(
       `https://api.langeek.co/v1/cs/en/word/?term=${term}&filter=,inCategory,photo,withExamples`
     );
 
-    console.log("API Response:", response.data);
     res.json(response.data);
   } catch (error) {
     console.error("Proxy Error:", error);
